@@ -1,0 +1,30 @@
+{
+  "name": "ts-mailer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "test": "tsx src/test-templated.ts",
+    "test:buffer": "tsx src/test-buffer-attachment.ts",
+    "test:construct": "tsx src/test-construct-mail-json.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "nodemailer": "^7.0.10",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/nodemailer": "^7.0.4",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.10"
+  }
+}
