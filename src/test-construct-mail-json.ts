@@ -7,7 +7,7 @@
  */
 
 import { type EmailAttachment } from './index.js';
-import { constructMailJson, testTemplatedEmails } from './test-templated.js';
+import { constructMailJson, batchSendTemplates } from './test-templated.js';
 
 async function testConstructMailJson() {
   try {
@@ -18,12 +18,12 @@ async function testConstructMailJson() {
     const template1 = constructMailJson({
       id: 'email-1',
       subject: 'Test Email with Path Attachment',
-      html: '<p>This email uses a file path for attachment.</p>',
-      text: 'This email uses a file path for attachment.',
+      html: '<p>This email uses a file path for attachment.  text</p>',
+      text: 'This email uses a file path for attachment.  html',
       attachments: [
         {
           filename: 'Columns.csv',
-          path: '/Users/xianchenliu/ts-mailer/src/Columns.csv',
+          path: '/Users/xianchenliu/ts-mailer/mail-template/src/Columns.csv',
           contentType: 'text/csv',
           disposition: 'attachment',
         },
@@ -34,9 +34,10 @@ async function testConstructMailJson() {
     // Example 2: Using Buffer content
     console.log('Example 2: Creating template with Buffer attachment');
     const { readFileSync } = await import('fs');
+    let template2: ReturnType<typeof constructMailJson> | undefined;
     try {
-      const fileBuffer = readFileSync('/Users/xianchenliu/ts-mailer/src/logo.png');
-      const template2 = constructMailJson({
+      const fileBuffer = readFileSync('/Users/xianchenliu/ts-mailer/mail-template/src/logo.png');
+      template2 = constructMailJson({
         id: 'email-2',
         subject: 'Test Email with Buffer Attachment',
         html: '<p>This email uses Buffer content for attachment.</p>',
@@ -83,7 +84,7 @@ async function testConstructMailJson() {
       attachments: [
         {
           filename: 'file1.csv',
-          path: '/Users/xianchenliu/ts-mailer/src/Columns.csv',
+          path: '/Users/xianchenliu/ts-mailer/mail-template/src/Columns.csv',
           contentType: 'text/csv',
           disposition: 'attachment',
         },
@@ -100,6 +101,7 @@ async function testConstructMailJson() {
     // Combine all templates
     const allTemplates = [
       ...template1,
+      ...(template2 || []),
       ...template3,
       ...template4,
     ];
@@ -108,7 +110,7 @@ async function testConstructMailJson() {
 
     // Test sending emails
     console.log('Sending test emails...\n');
-    await testTemplatedEmails(allTemplates);
+    await batchSendTemplates(allTemplates);
 
   } catch (error) {
     console.error('❌ Test execution error:', error instanceof Error ? error.message : error);

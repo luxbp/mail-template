@@ -60,7 +60,7 @@ export function constructMailJson(params: {
   return [template];
 }
 
-export async function testTemplatedEmails(templates: EmailTemplate[]) {
+export async function batchSendTemplates(templates: EmailTemplate[]) {
   try {
     console.log('=== Testing sendTemplatedEmails function ===\n');
 
@@ -142,7 +142,7 @@ export async function testTemplatedEmails(templates: EmailTemplate[]) {
 async function main() {
   const config = loadConfig();
   const mailer = new GmailMailer(config);
-  await testTemplatedEmails(mailer.templateJsonArray);
+  await batchSendTemplates(mailer.templateJsonArray);
 }
 
 // Example: Using constructMailJson with individual parameters
@@ -156,7 +156,7 @@ async function exampleWithConstructMailJson() {
     attachments: [
       {
         filename: 'Columns.csv',
-        path: '/Users/xianchenliu/ts-mailer/src/Columns.csv',
+        path: '/Users/xianchenliu/ts-mailer/mail-template/src/Columns.csv',
         contentType: 'text/csv',
         disposition: 'attachment',
       },
@@ -164,7 +164,7 @@ async function exampleWithConstructMailJson() {
   });
 
   // Now pass the returned array to testTemplatedEmails
-  await testTemplatedEmails(templates);
+  await batchSendTemplates(templates);
 }
 
 // Uncomment the line below to test with constructMailJson instead

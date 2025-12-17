@@ -22,8 +22,8 @@ export function loadConfig(): Config {
   });
 
   if (!result.success) {
-    const errors = result.error.errors.map((err) => `${err.path.join('.')}: ${err.message}`).join('\n');
-    throw new Error(`config validation failed:\n${errors}\n\nplease check the .env file for configuration items.`);
+    const errorMessages = result.error?.message || 'Unknown validation error';
+    throw new Error(`config validation failed:\n${errorMessages}\n\nplease check the .env file for configuration items.`);
   }
 
   return result.data;

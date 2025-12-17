@@ -47,14 +47,14 @@ export class GmailMailer {
       "attachments": [
         {
           "filename": "logo.png",
-          "path": "/Users/xianchenliu/ts-mailer/src/logo.png",
+          "path": "/Users/xianchenliu/ts-mailer/mail-template/src/logo.png",
           "contentType": "image/png",
           "cid": "logoCid",
           "disposition": "inline"
         },
         {
           "filename": "i94.pdf",
-          "path": "/Users/xianchenliu/ts-mailer/src/i94.pdf",
+          "path": "/Users/xianchenliu/ts-mailer/mail-template/src/i94.pdf",
           "contentType": "application/pdf",
           "disposition": "attachment"
         }
@@ -68,7 +68,7 @@ export class GmailMailer {
       "attachments": [
         {
           "filename": "Columns.csv",
-          "path": "/Users/xianchenliu/ts-mailer/src/Columns.csv",
+          "path": "/Users/xianchenliu/ts-mailer/mail-template/src/Columns.csv",
           "contentType": "text/csv",
           "disposition": "attachment"
         }

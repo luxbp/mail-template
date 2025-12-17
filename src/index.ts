@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import { fileURLToPath } from 'url';
+import { resolve } from 'path';
 import { loadConfig } from './config.js';
 import { GmailMailer } from './mailer.js';
 
@@ -56,11 +58,14 @@ async function main() {
   }
 }
 
-// execute main program
-main();
-
 // export for other modules
 export { GmailMailer } from './mailer.js';
 export { loadConfig } from './config.js';
 export type { EmailOptions, EmailTemplate, EmailAttachment } from './mailer.js';
+
+// execute main program only when this file is run directly (not when imported)
+const isMainModule = fileURLToPath(import.meta.url) === resolve(process.argv[1]);
+if (isMainModule) {
+  main();
+}
 
