@@ -1,8 +1,9 @@
 /**
- * Test script for sendTemplatedEmails function
+ * Utility functions for email template construction and batch sending
  * 
- * This script tests the sendTemplatedEmails function using templateJsonArray
- * Run: npm test
+ * This module provides utility functions for:
+ * - Constructing email templates from individual parameters (constructMailJson)
+ * - Batch sending multiple email templates (batchSendTemplates)
  */
 
 import { GmailMailer, loadConfig, type EmailTemplate, type EmailAttachment } from './index.js';
@@ -28,7 +29,7 @@ import { GmailMailer, loadConfig, type EmailTemplate, type EmailAttachment } fro
  *     }
  *   ]
  * });
- * await testTemplatedEmails(templates);
+ * await batchSendTemplates(templates);
  * ```
  */
 export function constructMailJson(params: {
@@ -138,37 +139,3 @@ export async function batchSendTemplates(templates: EmailTemplate[]) {
   }
 }
 
-// run test with templateJsonArray from GmailMailer
-async function main() {
-  const config = loadConfig();
-  const mailer = new GmailMailer(config);
-  await batchSendTemplates(mailer.templateJsonArray);
-}
-
-// Example: Using constructMailJson with individual parameters
-async function exampleWithConstructMailJson() {
-  // Example 1: Using constructMailJson with individual parameters
-  const templates = constructMailJson({
-    id: 'email-2',
-    subject: 'subject2',
-    html: '<p>Hi welcome HTML </p>',
-    text: 'Hi , welcome text',
-    attachments: [
-      {
-        filename: 'Columns.csv',
-        path: '/Users/xianchenliu/ts-mailer/mail-template/src/Columns.csv',
-        contentType: 'text/csv',
-        disposition: 'attachment',
-      },
-    ],
-  });
-
-  // Now pass the returned array to testTemplatedEmails
-  await batchSendTemplates(templates);
-}
-
-// Uncomment the line below to test with constructMailJson instead
-// exampleWithConstructMailJson();
-
-// Default: run with templateJsonArray
-main();

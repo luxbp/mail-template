@@ -7,8 +7,7 @@
     "start": "tsx src/index.ts",
     "dev": "tsx src/index.ts",
     "build": "tsc",
-    "test": "tsx src/test-templated.ts",
-    "test:buffer": "tsx src/test-buffer-attachment.ts",
+    "test": "tsx src/test.ts",
     "test:construct": "tsx src/test-construct-mail-json.ts"
   },
   "keywords": [],

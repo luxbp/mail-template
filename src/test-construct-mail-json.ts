@@ -7,7 +7,7 @@
  */
 
 import { type EmailAttachment } from './index.js';
-import { constructMailJson, batchSendTemplates } from './test-templated.js';
+import { constructMailJson, batchSendTemplates } from './template-utils.js';
 
 async function testConstructMailJson() {
   try {

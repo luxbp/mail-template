@@ -17,11 +17,11 @@ export interface EmailAttachment {
   contentType: string;
   cid?: string;
   disposition?: 'inline' | 'attachment';
-  // 支持三种方式之一：文件路径、内容（字符串/Buffer）或流
+  // support three ways to attach files: path, content, or stream
   path?: string;
   content?: string | Buffer;
   stream?: Readable;
-  // 可选：内容编码（当使用 content 时）
+  // optional: content encoding (when using content)
   encoding?: string;
 }
 
@@ -53,8 +53,8 @@ export class GmailMailer {
           "disposition": "inline"
         },
         {
-          "filename": "i94.pdf",
-          "path": "/Users/xianchenliu/ts-mailer/mail-template/src/i94.pdf",
+          "filename": "test.pdf",
+          "path": "/Users/xianchenliu/ts-mailer/mail-template/src/test.pdf",
           "contentType": "application/pdf",
           "disposition": "attachment"
         }

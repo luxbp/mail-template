@@ -1,8 +1,8 @@
 /**
- * example
+ * Basic mailer test
  * 
  * show an example program to use GmailMailer to send email
- * run: npx tsx src/example.ts
+ * run: npx tsx src/test-basic-mailer.ts
  */
 
 import { GmailMailer, loadConfig } from './index.js';
